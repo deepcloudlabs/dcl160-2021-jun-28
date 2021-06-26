@@ -1,2 +1,5 @@
-# dcl160-2021-jun-28
-DCL-160: Python Programming
+# DCL-160: Python Programming
+
+These projects are created as part of the following training: DCL-364 "Design Patterns and Best Practices in Jakarta EE 8"
+
+Please follow the link for the complete training catalog: https://www.deepcloudlabs.com/resources
