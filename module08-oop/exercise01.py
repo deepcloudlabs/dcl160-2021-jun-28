@@ -23,6 +23,12 @@ class Account:
         self.iban = iban
         self.balance = balance
 
+    # destructor
+    def __del__(self):
+        # deallocate the resource: close file
+        print("Account's destructor is working...")
+        pass
+
     def deposit(self, amount=10):
         if amount <= 0:  # validation
             raise ValueError(f"{amount} must be positive!")
@@ -59,9 +65,17 @@ class Account:
 # CheckingAccount -> sub class, derived class
 # CheckingAccount: Account (2) -> iban, balance , CheckingAccount (1) -> overdraft_amount
 class CheckingAccount(Account):
+    # constructor
     def __init__(self, iban, balance=10, overdraft_amount=100):
         super().__init__(iban, balance)
         self.overdraft_amount = overdraft_amount
+        # allocates a resource: open file
+
+    # destructor
+    def __del__(self):
+        # deallocate the resource: close file
+        print("CheckingAccount's destructor is working...")
+        pass
 
     def withdraw(self, amount=10, withdrawAvailable=False):
         if amount <= 0:  # validation
@@ -86,15 +100,17 @@ class CheckingAccount(Account):
 
 try:
     acc1 = Account(iban="tr1", balance=1_000_000)
+    # del acc1 # triggers the destructor
+    acc1 = CheckingAccount(iban="TR3")
+    acc2 = CheckingAccount(iban="TR2", balance=50_000, overdraft_amount=10_000)
     print(acc1.withdraw(75_000))
     print(acc1.withdraw(amount=1_250_000, withdrawAvailable=True))
     print(f"{acc1.iban}: {acc1.balance}")
     print(acc1)  # Account::__str__
-    acc2 = CheckingAccount(iban="TR2", balance=50_000, overdraft_amount=10_000)
     print(acc2)
     print(acc2.withdraw(amount=60_000, withdrawAvailable=False))
     print(acc2)
-    print(acc2.withdraw(amount=1, withdrawAvailable=True))
+    # print(acc2.withdraw(amount=1, withdrawAvailable=True))
 except ValueError as err:
     print(err)
 except InsufficientBalanceException as err:
