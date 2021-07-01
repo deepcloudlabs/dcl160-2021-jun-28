@@ -48,3 +48,6 @@ kate = deepcloudlabs.hr.Employee(**example)
 print(jack.identity, jack.fullname)
 print(kate.identity, kate.fullname)
 
+from deepcloudlabs.dictionary import get_word
+
+print(get_word(42))
