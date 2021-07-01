@@ -10,9 +10,9 @@ Python'da bir paket oluşturmak için bir dizin yaratmanız yeterli olacaktır:
 
 ![Installation folder](module10-figure01.png?raw=true "package directory content")
 
-Bu dizin yapısı içinde `__init__.py` dosyası module yüklenirken bir kere çalıştırılır ve modülle ilgili başlangıç işlemleri gerçekleştirilir:
+Bu dizin yapısı içinde `__init__.py` dosyası modül yüklenirken bir kere çalıştırılır ve modülle ilgili başlangıç işlemleri gerçekleştirilir:
 
-```
+```python
 print("deepcloudlabs module is loaded!")
 # all initialization code goes here
 
@@ -22,3 +22,16 @@ with open("deepcloudlabs/dictionary-tur.txt", "r") as the_file:
     for line in the_file.readlines():
         lines.append(line.strip())
 ```
+
+Böylelikle modül içindeki dictionary.py dosyası içinde tekrar tekrar dosyanın yüklenmesine gerek olmaz:
+
+
+```python
+lines = []
+
+
+def get_word(index):
+    return lines[index]
+```
+
+Burada lines listesi her zaman modül yüklenirken sözlük dosyası okunarak doldurulur.
