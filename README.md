@@ -86,3 +86,10 @@ kate = deepcloudlabs.hr.Employee(**example)
 print(jack.identity, jack.fullname)
 print(kate.identity, kate.fullname)
 ```
+Sözlükteki 42. sıradaki kelimeye erişmek için ise aşağıdaki kodu yazıyoruz:
+
+```python
+from deepcloudlabs.dictionary import get_word
+
+print(get_word(42))
+```
