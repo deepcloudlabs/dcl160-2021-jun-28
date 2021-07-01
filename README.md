@@ -10,7 +10,7 @@ Python'da bir paket oluşturmak için bir dizin yaratmanız yeterli olacaktır:
 
 ![Installation folder](module10-figure01.png?raw=true "package directory content")
 
-Bu dizin yapısı içinde __init__.py dosyası module yüklenirken bir kere çalıştırılır ve modülle ilgili başlangıç işlemleri gerçekleştirilir:
+Bu dizin yapısı içinde `__init__.py` dosyası module yüklenirken bir kere çalıştırılır ve modülle ilgili başlangıç işlemleri gerçekleştirilir:
 
 ```
 print("deepcloudlabs module is loaded!")
