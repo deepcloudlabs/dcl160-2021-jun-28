@@ -23,6 +23,7 @@ async def consumer_handler(frames):
     async for frame in frames:
         trade = json.loads(frame)
         trades.append(trade)
+        print(trade)
         if len(trades) == 10_000:
             pass
 
