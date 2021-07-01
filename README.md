@@ -60,3 +60,8 @@ from deepcloudlabs.dictionary import get_word
 print(get_word(42))
 ```
 
+**deepcloudlabs** altındaki **utils.py** paketini yüklemek için aşağıdaki python satırını yazmanız yeterli olacaktır:
+
+```python
+from deepcloudlabs.utils import lost_numbers as nums, is_even as cift_mi
+```
