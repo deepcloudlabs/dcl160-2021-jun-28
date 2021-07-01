@@ -83,3 +83,27 @@ for animal in animals:
     if isinstance(animal, Pet):
         animal.play()
 
+total_legs = sum(map(lambda animal: animal.legs, animals))
+
+print(total_legs)
+
+# cluster animals into 2 classes: pet vs wild and count them!
+countAnimals = {
+    "pet": 0,
+    "wild": 0
+}
+
+from functools import reduce
+
+
+def reducer(count, petOrWild):
+    count[petOrWild] += 1
+    return count
+
+
+mapAnimal2WildOrPet = lambda animal: "pet" if isinstance(animal, Pet) else "wild"
+
+result = reduce(reducer, map(mapAnimal2WildOrPet, animals), countAnimals)
+
+print(result)
+
