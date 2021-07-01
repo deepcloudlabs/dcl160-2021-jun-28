@@ -29,9 +29,34 @@ Böylelikle modül içindeki **dictionary.py** dosyası içinde tekrar tekrar do
 ```python
 lines = []
 
-
 def get_word(index):
     return lines[index]
 ```
 
-Burada **lines** listesi her zaman modül yüklenirken sözlük dosyası okunarak doldurulur.
+Burada **lines** listesi her zaman modül yüklenirken sözlük dosyası okunarak doldurulur. Modülün kullanımına ilişkin aşağıdaki örneklere göz atalım:
+
+```python
+from deepcloudlabs.utils import lost_numbers as nums, is_even as cift_mi
+
+print(nums)
+print(cift_mi(42))
+
+import deepcloudlabs.hr
+
+print(dir(deepcloudlabs))
+example = {
+    "identity": "9876543210",
+    "fullname": "kate austen"
+}
+jack = deepcloudlabs.hr.Employee("12345678910", "jack bauer")
+
+kate = deepcloudlabs.hr.Employee(**example)
+
+print(jack.identity, jack.fullname)
+print(kate.identity, kate.fullname)
+
+from deepcloudlabs.dictionary import get_word
+
+print(get_word(42))
+```
+
