@@ -65,3 +65,24 @@ print(get_word(42))
 ```python
 from deepcloudlabs.utils import lost_numbers as nums, is_even as cift_mi
 ```
+
+**deepcloudlabs** altındaki **hr.py** paketini yüklemek için aşağıdaki python satırını yazmanız yeterli olacaktır:
+
+```python
+import deepcloudlabs.hr
+```
+
+Bu şekilde **Employee** sınıfından nesne yaratabilirsiniz:
+
+```python
+example = {
+    "identity": "9876543210",
+    "fullname": "kate austen"
+}
+jack = deepcloudlabs.hr.Employee("12345678910", "jack bauer")
+
+kate = deepcloudlabs.hr.Employee(**example)
+
+print(jack.identity, jack.fullname)
+print(kate.identity, kate.fullname)
+```
