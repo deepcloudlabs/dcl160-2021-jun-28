@@ -75,7 +75,7 @@ garfield.setName("garfield")
 jaws = Fish()
 jaws.setName("jaws")
 
-animals = [Cat(), Spider(), jaws, Spider(), garfield, Fish()]
+animals = [Cat(), Spider(), jaws, Spider(), garfield, Fish(), Spider(), Fish(), Spider()]
 
 for animal in animals:
     animal.walk()
@@ -107,3 +107,23 @@ result = reduce(reducer, map(mapAnimal2WildOrPet, animals), countAnimals)
 
 print(result)
 
+distinctAnimals = set([])
+for animal in animals:
+    distinctAnimals.update([type(animal).__name__])
+distinctAnimals = sorted(distinctAnimals)
+print(distinctAnimals)
+
+distinctAnimals = set(map(lambda an: type(an).__name__, animals))
+print(distinctAnimals)
+
+
+def countReducer(d, c):
+    d[c] += 1
+    return d
+
+
+animalCounts = dict.fromkeys(distinctAnimals, 0)
+
+print(animalCounts)
+reduce(countReducer, map(lambda animal: type(animal).__name__, animals), animalCounts)
+print(animalCounts)
