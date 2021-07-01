@@ -9,11 +9,22 @@ import websockets
 'b': 6701262151, 'a': 6701262192, 'T': 1625129672318, 'm': True, 'M': True}
 """
 
+trading_data = {
+    "6701262004": {
+        "sell": 100_000,
+        "buy": 150_000,
+        "count": 100
+    }
+}
+
+trades = []
 
 async def consumer_handler(frames):
     async for frame in frames:
         trade = json.loads(frame)
-        print(trade)
+        trades.append(trade)
+        if len(trades) == 10_000:
+            pass
 
 
 async def connect():
