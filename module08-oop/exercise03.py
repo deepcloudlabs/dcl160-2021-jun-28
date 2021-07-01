@@ -10,23 +10,38 @@ import websockets
 """
 
 trading_data = {
-    "6701262004": {
-        "sell": 100_000,
-        "buy": 150_000,
-        "count": 100
-    }
 }
 
 trades = []
 
 async def consumer_handler(frames):
+    global trading_data
+    global trades
     async for frame in frames:
         trade = json.loads(frame)
         trades.append(trade)
-        print(trade)
-        if len(trades) == 10_000:
-            pass
-
+        # print(trade)
+        if len(trades) == 1_000:
+            my_trades = trades[:]
+            for tr in my_trades:
+                bid_id = tr['b']
+                ask_id = tr['a']
+                volume = float(tr['p']) * float(tr['q'])
+                if bid_id in trading_data:
+                    trading_data[bid_id]["buy"] += volume
+                    trading_data[bid_id]["count"] += 1
+                else:
+                    trading_data[bid_id] = {}
+                    trading_data[bid_id]["buy"] = volume
+                    trading_data[bid_id]["count"] = 1
+                if ask_id in trading_data:
+                    trading_data[ask_id]["sell"] += volume
+                    trading_data[ask_id]["count"] += 1
+                else:
+                    trading_data[ask_id] = {}
+                    trading_data[ask_id]["sell"] = volume
+                    trading_data[ask_id]["count"] = 1
+            print(trading_data)
 
 async def connect():
     async with websockets.connect("wss://stream.binance.com:9443/ws/btcusdt@trade") as ws:
