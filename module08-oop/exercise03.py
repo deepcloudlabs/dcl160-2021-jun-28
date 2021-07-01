@@ -21,7 +21,7 @@ async def consumer_handler(frames):
         trade = json.loads(frame)
         trades.append(trade)
         # print(trade)
-        if len(trades) == 1_000:
+        if len(trades) == 10_000:
             my_trades = trades[:]
             for tr in my_trades:
                 bid_id = tr['b']
@@ -31,16 +31,21 @@ async def consumer_handler(frames):
                     trading_data[bid_id]["buy"] += volume
                     trading_data[bid_id]["count"] += 1
                 else:
-                    trading_data[bid_id] = {}
+                    trading_data[bid_id] = {
+                        "sell": 0
+                    }
                     trading_data[bid_id]["buy"] = volume
                     trading_data[bid_id]["count"] = 1
                 if ask_id in trading_data:
                     trading_data[ask_id]["sell"] += volume
                     trading_data[ask_id]["count"] += 1
                 else:
-                    trading_data[ask_id] = {}
+                    trading_data[ask_id] = {
+                        "buy": 0
+                    }
                     trading_data[ask_id]["sell"] = volume
                     trading_data[ask_id]["count"] = 1
+            trading_data = {id: volume for id, volume in sorted(trading_data.items(), key=lambda item: item[1]["count"], reverse=True)}
             print(trading_data)
 
 async def connect():
